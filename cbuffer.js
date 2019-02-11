@@ -28,6 +28,15 @@ class CBuffer {
   }
 
   /* mutator methods */
+  //from
+  static from (arrLike, mapFn) {
+    const [...arr] = arrLike;
+    const newBuffer = new CBuffer(...arr);
+    if(mapFn && typeof mapFn == 'function') {
+      newBuffer.map(mapFn)
+    }
+    return newBuffer
+  }
   // pop last item
   pop() {
     let item;
@@ -216,7 +225,7 @@ class CBuffer {
     }
   }
   filter(callback, context) {
-    const result = new Array();
+    const result = [];
     for (var i = 0; i < this.length; i++) {
       var n = (this.start + i) % this.size;
       if(callback.call(context, this.data[n], this)) {

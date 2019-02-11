@@ -58,6 +58,7 @@ myBuff.push(5);       // log: 1
 * indexOf     - Returns the first (least) index of an element within the circular buffer equal to the specified value, or -1 if none is found.
 * lastIndexOf - Returns the last (greatest) index of an element within the circular buffer equal to the specified value, or -1 if none is found.
 * sortedIndex - Returns the position some `value` would be inserted into a sorted circular buffer ranked by an optional comparitor.
+* from        - Creates and returns a new Buffer instance using the arguments.
 
 #### Iteration Methods
 
