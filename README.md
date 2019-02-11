@@ -50,7 +50,8 @@ myBuff.push(5);       // log: 1
 * shift       - Removes the first element from a circular buffer and returns that element.
 * sort        - Sorts the elements of a circular buffer. Unlike native `sort`, the default comparitor sorts by `a > b`.
 * unshift     - Adds one or more elements to the front of a circular buffer and returns the new length.
-* filter      - Removes the elements that does not pass the condition.
+* filter      - Removes the elements that does not pass the condition. **Mutates the Buffer**
+* map         - Iterate over each element and mutates them. **Mutates the Buffer**
 
 #### Accessor Methods
 
