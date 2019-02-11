@@ -1,5 +1,5 @@
 const cluster = require('cluster');
-const tests = ['pop','push','reverse','shift','unshift','filter']
+const tests = ['pop','push','reverse','shift','unshift','filter','map']
 if (cluster.isMaster) {
   const msgs = []
   let count  = 0

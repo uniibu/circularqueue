@@ -13,7 +13,7 @@ class CBuffer {
     if (args.length > 1 || typeof args[0] !== 'number') {
       if(Array.isArray(args[0])){
         this.data = new Array(...args);
-        this.end = (this.size = args.length) - 1;
+        this.end = (this.size = args[0].length) - 1;
       } else {
         this.data = new Array(args.length);
         this.end = (this.size = args.length) - 1;
@@ -224,17 +224,16 @@ class CBuffer {
       }
     }
     this.length = result.length;
-        this.end = this.length - 1;
+    this.end = this.length - 1;
     this.data = result;
     return this;
   }
   map(callback, context) {
-    var outCBuffer = new CBuffer(this.size);
     for (var i = 0; i < this.length; i++) {
       var n = (this.start + i) % this.size;
-      outCBuffer.push(callback.call(context, this.data[n], i, this));
+      this.data[n] = callback.call(context, this.data[n], this)
     }
-    return outCBuffer;
+    return this;
   }
   // check items agains test until one returns true
   // TODO: figure out how to emuldate Array use better
