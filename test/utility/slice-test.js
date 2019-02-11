@@ -7,7 +7,7 @@ require('../env');
 suite.addBatch({
 	'slice': {
 		topic: function() {
-			return CBuffer(1, 3, 5, 7, 11);
+			return new CBuffer(1, 3, 5, 7, 11);
 		},
 		'no arguments returns array of data': function(buffer) {
 			assert.deepEqual(buffer.slice(), [1, 3, 5, 7, 11]);
@@ -28,7 +28,7 @@ suite.addBatch({
 		},
 		'works with partial CBuffers': {
 			topic: function() {
-				var buffer = CBuffer(10);
+				var buffer = new CBuffer(10);
 				buffer.push(1, 2, 3);
 				return buffer;
 			},
@@ -38,7 +38,7 @@ suite.addBatch({
 		},
 		'handles circular cases': {
 			topic: function() {
-				var buffer = CBuffer(-1, 0, 1, 3, 5);
+				var buffer = new CBuffer(-1, 0, 1, 3, 5);
 				buffer.push(7, 9);
 				return buffer;
 			},

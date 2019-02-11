@@ -12,7 +12,7 @@ suite.addBatch({
 		'unshift items' : function (CBuffer) {
 			var tmp;
 
-			tmp = CBuffer(3);
+			tmp = new CBuffer(3);
 			tmp.unshift(1, 2, 3);
 			assert.deepEqual(tmp.data, [3, 2, 1]);
 			tmp.unshift(4);
@@ -21,7 +21,7 @@ suite.addBatch({
 		'unshift properties' : function (CBuffer) {
 			var tmp;
 
-			tmp = CBuffer(3);
+			tmp = new CBuffer(3);
 			tmp.unshift(1, 2);
 			assert.equal(tmp.length, 2);
 			assert.equal(tmp.start, 1);

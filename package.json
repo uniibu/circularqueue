@@ -1,26 +1,39 @@
 {
-	"name" : "CBuffer",
-	"version" : "2.0.0",
-	"description" : "Circular Buffer JavaScript implementation",
-	"homepage" : "https://github.com/trevnorris/cbuffer",
-	"main" : "./cbuffer.js",
-	"author" : {
-		"name" : "Trevor Norris",
-		"email" : "trev.norris@gmail.com",
-		"url" : "http://trevorjnorris.com"
+	"name": "@unibtc/better-cbuffer",
+	"version": "3.0.0",
+	"description": "Circular Buffer JavaScript implementation",
+	"homepage": "https://github.com/uniibu/better-cbuffer",
+	"main": "./dist/cbuffer.js",
+	"publishConfig": {
+		"access": "public"
 	},
-	"licenses" : [{
-		"type" : "MIT",
-		"url" : "http://www.opensource.org/licenses/mit-license.php"
-	}],
-	"devDependencies" : {
-		"vows" : "latest"
+	"author": {
+		"name": "Uni Sayo",
+		"email": "unibtc@gmail.com",
+		"url": "https://github.com/uniibu"
 	},
-	"scripts" : {
-		"test" : "node ./node_modules/.bin/vows"
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/mit-license.php"
+		}
+	],
+	"devDependencies": {
+		"@babel/core": "^7.2.2",
+		"@babel/preset-env": "^7.3.1",
+		"CBuffer": "^2.0.0",
+		"babel-loader": "^8.0.5",
+		"benchmark": "^2.1.4",
+		"vows": "latest",
+		"webpack": "^4.29.3",
+		"webpack-cli": "^3.2.3"
 	},
-	"repository" : {
-		"type" : "git",
-		"url" : "https://github.com/trevnorris/cbuffer.git"
+	"scripts": {
+		"test": "node ./node_modules/.bin/vows",
+		"build": "rm -rf dist && webpack"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/uniibu/better-cbuffer.git"
 	}
 }

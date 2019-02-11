@@ -10,10 +10,10 @@ suite.addBatch({
 			return CBuffer;
 		},
 		'find item' : function (CBuffer) {
-			assert.equal(CBuffer(1, 2, 3).indexOf(2), 1);
-			assert.equal(CBuffer('a', 'b', 'c').indexOf('c'), 2);
-			assert.equal(CBuffer(1, 2, 3).indexOf('1'), -1);
-			assert.equal(CBuffer(1, 2, 3).indexOf(4), -1);
+			assert.equal(new CBuffer(1, 2, 3).indexOf(2), 1);
+			assert.equal(new CBuffer('a', 'b', 'c').indexOf('c'), 2);
+			assert.equal(new CBuffer(1, 2, 3).indexOf('1'), -1);
+			assert.equal(new CBuffer(1, 2, 3).indexOf(4), -1);
 		}
 	}
 });

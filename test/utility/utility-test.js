@@ -49,7 +49,7 @@ suite.addBatch({
 			assert.equal(tmp.get(1), 2);
 		},
 		'toArray' : function (CBuffer) {
-			assert.ok(CBuffer(1).toArray() instanceof Array);
+			assert.ok(new CBuffer(1).toArray() instanceof Array);
 		},
 		'overflow' : function (CBuffer) {
 			// TODO: this needs to be an async test

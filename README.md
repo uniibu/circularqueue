@@ -1,14 +1,15 @@
 ## JavaScript [Circular Buffer](http://en.wikipedia.org/wiki/Circular_buffer) Utility
 
-The end goal of this project is to implement the entire JavaScript `Array.prototype`, and some
-additional utility methods, as a circular buffer.
+Forked from [CBuffer](https://github.com/trevnorris/cbuffer/) with additional enhancements
 
 Note: This is called a circular buffer because of what this library accomplishes, but is implemented
 as an Array. This may be confusing for Node users, which may want to use a true Buffer.
 
-While the entire `Array.prototype` API is on the roadmap, it's not all quite here. Below is the
-currently implemented API.
+Below is the currently implemented API.
 
+### Installation
+
+- `npm install better-cbuffer` or `yarn add better-cbuffer`
 
 ### Usage
 
@@ -17,7 +18,7 @@ It's simple. Just use it like you would use an Array.
 ```javascript
 new CBuffer(10);      // empty buffer with size of 10
 new CBuffer(1,2,3,4); // buffer with size 4
-CBuffer(5);           // For those who are really lazy, new is optional
+new CBuffer([1,2,3,4,5]);           // buffer with size 5
 ```
 
 Included are several non-standard niceties. Like if you want to catch when data is overwritten,
@@ -25,7 +26,7 @@ just assign a function to the `overflow` variable and it will be called whenever
 to be overwritten and it will pass the value as the first argument:
 
 ```javascript
-var myBuff = CBuffer(4);
+var myBuff = new CBuffer(4);
 myBuff.overflow = function(data) {
     console.log(data);
 };
@@ -47,6 +48,7 @@ myBuff.push(5);       // log: 1
 * shift       - Removes the first element from a circular buffer and returns that element.
 * sort        - Sorts the elements of a circular buffer. Unlike native `sort`, the default comparitor sorts by `a > b`.
 * unshift     - Adds one or more elements to the front of a circular buffer and returns the new length.
+* filter      - Removes the elements that does not pass the condition.
 
 #### Accessor Methods
 
@@ -63,6 +65,7 @@ myBuff.push(5);       // log: 1
 #### Utility Methods
 
 * empty       - Equivalent to setting `Array.length = 0`.
+* clear       - Equivalent to `CBuffer.fill(undefined).empty()`
 * fill        - Fill with passed argument. Also supports functions.
 * first       - Returns first value in circular buffer.
 * last        - Returns last value in circular buffer.

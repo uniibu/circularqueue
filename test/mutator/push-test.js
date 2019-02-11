@@ -12,7 +12,7 @@ suite.addBatch({
 		'push items' : function (CBuffer) {
 			var tmp;
 
-			tmp = CBuffer(3);
+			tmp = new CBuffer(3);
 			tmp.push(1, 2, 3);
 			assert.deepEqual(tmp.data, [1, 2, 3]);
 			tmp.push(4);
@@ -21,7 +21,7 @@ suite.addBatch({
 		'push properties' : function (CBuffer) {
 			var tmp;
 
-			tmp = CBuffer(3);
+			tmp = new CBuffer(3);
 			tmp.push(1, 2);
 			assert.equal(tmp.length, 2);
 			assert.equal(tmp.start, 0);
