@@ -74,3 +74,30 @@ myBuff.push(5);       // log: 1
 * toArray     - Return clean ordered array of buffer.
 * overflow    - Set to function and will be called when data is about to be overwritten.
 * slice       - Return a slice of the buffer as an array.
+
+
+#### Benchmark
+- run `node speed/index`
+
+```
+shift 1e4 - CBuffer x 80,594 ops/sec ±4.19% (82 runs sampled)
+pop 1e5 - CBuffer x 8,424 ops/sec ±3.61% (88 runs sampled)
+filter - CBuffer x 14,883,389 ops/sec ±2.06% (79 runs sampled)
+reverse - CBuffer x 99,982,055 ops/sec ±2.24% (87 runs sampled)
+push 1e5 - CBuffer x 377,083,872 ops/sec ±2.87% (86 runs sampled)
+unshift 1e5 - CBuffer x 366,588,191 ops/sec ±3.29% (80 runs sampled)
+
+shift 1e4 - Array   x 64,866 ops/sec ±6.62% (80 runs sampled)
+pop 1e5 - Array   x 6,204 ops/sec ±6.85% (65 runs sampled)
+filter - Array   x 335 ops/sec ±5.64% (69 runs sampled)
+reverse - Array   x 9,094 ops/sec ±5.21% (82 runs sampled)
+push 1e5 - Array   x 6,327,845 ops/sec ±3.83% (77 runs sampled)
+unshift 1e5 - Array   x 6,876,578 ops/sec ±4.29% (79 runs sampled)
+
+Fastest is pop 1e5 - CBuffer
+Fastest is shift 1e4 - CBuffer
+Fastest is filter - CBuffer
+Fastest is reverse - CBuffer
+Fastest is push 1e5 - CBuffer
+Fastest is unshift 1e5 - CBuffer
+```

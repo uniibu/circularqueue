@@ -17,9 +17,9 @@ suite.addBatch({
 				return ~~a === a;
 			}));
 
-			assert.ifError(tmp.every(function (a) {
+			assert.equal(tmp.every(function (a) {
 				return a < 4;
-			}));
+			}),false);
 		}
 	}
 });
