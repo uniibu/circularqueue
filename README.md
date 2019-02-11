@@ -1,5 +1,7 @@
 ## JavaScript [Circular Buffer](http://en.wikipedia.org/wiki/Circular_buffer) Utility
 
+[![Build Status](https://travis-ci.com/uniibu/better-cbuffer.svg?branch=master)](https://travis-ci.com/uniibu/better-cbuffer)
+
 Forked from [CBuffer](https://github.com/trevnorris/cbuffer/) with additional enhancements
 
 Note: This is called a circular buffer because of what this library accomplishes, but is implemented
