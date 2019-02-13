@@ -390,9 +390,11 @@ class CBuffer {
       }
       let data = readFileSync(file, { encoding: 'utf8' });
       data = JSON.parse(data);
-      this.data = new Array(data.length);
-      this.end = (this.size = data.length) - 1;
-      this.push.apply(this, data);
+      if(data.length) {
+        this.data = new Array(data.length);
+        this.end = (this.size = data.length) - 1;
+        this.push.apply(this, data);
+      }
     }
   }
   save(filename) {
