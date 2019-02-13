@@ -1,6 +1,6 @@
 {
 	"name": "@unibtc/better-cbuffer",
-	"version": "3.0.3",
+	"version": "3.0.4",
 	"description": "Circular Buffer JavaScript implementation",
 	"homepage": "https://github.com/uniibu/better-cbuffer",
 	"main": "./dist/cbuffer.js",
@@ -24,6 +24,7 @@
 		"CBuffer": "^2.0.0",
 		"babel-loader": "^8.0.5",
 		"benchmark": "^2.1.4",
+		"rimraf": "^2.6.3",
 		"vows": "latest",
 		"webpack": "^4.29.3",
 		"webpack-cli": "^3.2.3"

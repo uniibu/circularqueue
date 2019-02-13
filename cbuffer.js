@@ -1,3 +1,5 @@
+const {resolve, join} = require('path');
+const {readFileSync,writeFileSync,mkdirSync,existsSync} = require('fs');
 class CBuffer {
   constructor(...args) {
 
@@ -11,7 +13,7 @@ class CBuffer {
     this.overflow = null;
     // emulate Array based on passed arguments
     if (args.length > 1 || typeof args[0] !== 'number') {
-      if(Array.isArray(args[0])){
+      if (Array.isArray(args[0])) {
         this.data = new Array(...args);
         this.end = (this.size = args[0].length) - 1;
       } else {
@@ -23,16 +25,17 @@ class CBuffer {
       this.data = new Array(args[0]);
       this.end = (this.size = args[0]) - 1;
     }
+    this.cachePath = resolve(process.cwd(), '.cache');
     // need to `return this` so `return CBuffer.apply` works
     return this;
   }
 
   /* mutator methods */
   //from
-  static from (arrLike, mapFn) {
+  static from(arrLike, mapFn) {
     const [...arr] = arrLike;
     const newBuffer = new CBuffer(...arr);
-    if(mapFn && typeof mapFn == 'function') {
+    if (mapFn && typeof mapFn == 'function') {
       newBuffer.map(mapFn)
     }
     return newBuffer
@@ -43,8 +46,8 @@ class CBuffer {
     if (this.length === 0) return;
     item = this.data[this.end];
     // remove the reference to the object so it can be garbage collected
-   // delete this.data[this.end];
-    this.end = (this.end - 1 ) % this.size;
+    // delete this.data[this.end];
+    this.end = (this.end - 1) % this.size;
     this.length--;
     return item;
   }
@@ -80,8 +83,8 @@ class CBuffer {
 
   reverse() {
     if (this.length === 0) return this;
-	  var i=0, j=this.length-1;
-	  var k, tmp, mid=this.length/2|0; // same as Math.floor
+    var i = 0, j = this.length - 1;
+    var k, tmp, mid = this.length / 2 | 0; // same as Math.floor
 
     for (; i < mid; i++) {
       const n = (this.start + i) % this.size
@@ -89,7 +92,7 @@ class CBuffer {
       this.data[n] = this.data[j - n];
       this.data[j - n] = tmp;
     }
-	  return this;
+    return this;
 
   }
   // rotate buffer to the left by cntr, or by 1
@@ -228,7 +231,7 @@ class CBuffer {
     const result = [];
     for (var i = 0; i < this.length; i++) {
       var n = (this.start + i) % this.size;
-      if(callback.call(context, this.data[n], this)) {
+      if (callback.call(context, this.data[n], this)) {
         result.push(this.data[n]);
       }
     }
@@ -336,14 +339,14 @@ class CBuffer {
   }
   // return clone array of values
   get toArrayClone() {
-    return Array.from(this.slice(),(val) => {
-      if(isString(val)) return val;
-      if(Array.isArray(val)) return [...val];
-      if(isObject(val)) return {...val};
+    return Array.from(this.slice(), (val) => {
+      if (isString(val)) return val;
+      if (Array.isArray(val)) return [...val];
+      if (isObject(val)) return { ...val };
       return val;
     })
   }
-  get array(){
+  get array() {
     return this.slice();
   }
   // return clean array of values
@@ -378,15 +381,40 @@ class CBuffer {
     }
     return result;
   }
+  load(filename) {
+    if (typeof module !== 'undefined' && module.exports) {
+      if (!filename) throw new Error('Missing filename');
+      const file = join(this.cachePath, filename + '.json');
+      if (!existsSync(file)) {
+        throw new Error('File does not exists');
+      }
+      let data = readFileSync(file, { encoding: 'utf8' });
+      data = JSON.parse(data);
+      this.data = new Array(data.length);
+      this.end = (this.size = data.length) - 1;
+      this.push.apply(this, data);
+    }
+  }
+  save(filename) {
+    if (typeof module !== 'undefined' && module.exports) {
+      if (!filename) throw new Error('Missing filename');
+      const file = join(this.cachePath, filename + '.json');
+      if(!existsSync(this.cachePath)) {
+        mkdirSync(this.cachePath,{recursive:true});
+      }
+      writeFileSync(file, JSON.stringify(this.slice()));
+    }
+  }
 }
 
 function defaultComparitor(a, b) {
   return a == b ? 0 : a > b ? 1 : -1;
 }
-function isObject(val){
+function isObject(val) {
   return val != null && typeof val === 'object' && Array.isArray(val) === false;
 }
-function isString(val){
+function isString(val) {
   return val != null && typeof val === 'string';
 }
+
 module.exports = CBuffer;
