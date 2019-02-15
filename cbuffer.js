@@ -391,8 +391,10 @@ class CBuffer {
       let data = readFileSync(file, { encoding: 'utf8' });
       data = JSON.parse(data);
       if(data.length) {
-        this.data = new Array(data.length);
-        this.end = (this.size = data.length) - 1;
+        this.data = new Array(this.size);
+        this.start = 0;
+        this.length = 0;
+        this.end = this.size - 1;
         this.push.apply(this, data);
       }
     }

@@ -1,6 +1,6 @@
 {
 	"name": "@unibtc/better-cbuffer",
-	"version": "3.0.5",
+	"version": "3.0.6",
 	"description": "Circular Buffer JavaScript implementation",
 	"homepage": "https://github.com/uniibu/better-cbuffer",
 	"main": "./dist/cbuffer.js",
