@@ -2,7 +2,7 @@ const { resolve, join } = require('path');
 const { readFileSync, writeFileSync, mkdirSync, existsSync } = require('fs');
 const EventEmitter = require('events');
 
-class CBuffer extends EventEmitter {
+class CQueue extends EventEmitter {
   constructor(...args) {
     super();
     if (args.length === 0)
@@ -26,7 +26,7 @@ class CBuffer extends EventEmitter {
       this.end = (this.size = args[0]) - 1;
     }
     this.cachePath = resolve(process.cwd(), '.cache');
-    // need to `return this` so `return CBuffer.apply` works
+    // need to `return this` so `return CQueue.apply` works
     return this;
   }
 
@@ -34,7 +34,7 @@ class CBuffer extends EventEmitter {
   //from
   static from(arrLike, mapFn) {
     const [...arr] = arrLike;
-    const newBuffer = new CBuffer(...arr);
+    const newBuffer = new CQueue(...arr);
     if (mapFn && typeof mapFn == 'function') {
       newBuffer.map(mapFn)
     }
@@ -131,7 +131,7 @@ class CBuffer extends EventEmitter {
 
   /* utility methods */
   // reset pointers to buffer with zero items
-  // note: this will not remove values in cbuffer, so if for security values
+  // note: this will not remove values in cqueue, so if for security values
   //       need to be overwritten, run `.fill(null).empty()`
   empty() {
     this.length = this.start = 0;
@@ -217,14 +217,4 @@ class CBuffer extends EventEmitter {
   }
 }
 
-function defaultComparitor(a, b) {
-  return a == b ? 0 : a > b ? 1 : -1;
-}
-function isObject(val) {
-  return val != null && typeof val === 'object' && Array.isArray(val) === false;
-}
-function isString(val) {
-  return val != null && typeof val === 'string';
-}
-
-module.exports = CBuffer;
+module.exports = CQueue;

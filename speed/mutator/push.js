@@ -1,10 +1,10 @@
 
-module.exports = function(CBuffer, bench, denque) {
+module.exports = function(CQueue, bench, denque) {
   return new Promise(resolve => {
     const suite = new bench.Suite();
     const SIZE = 2e6;
     console.log('PUSH')
-    var cb = new CBuffer(SIZE),
+    var cb = new CQueue(SIZE),
       dq = new denque()
     arr = [];
 

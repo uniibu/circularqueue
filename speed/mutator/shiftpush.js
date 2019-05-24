@@ -1,11 +1,11 @@
 
-module.exports = function(CBuffer, bench, denque) {
+module.exports = function(CQueue, bench, denque) {
   return new Promise(resolve => {
     const suite = new bench.Suite();
     const SIZE = 2e6;
     console.log('SHIFT PUSH')
     var arr = Array.from(new Array(SIZE), (d, i) => i)
-    var cb = new CBuffer(arr);
+    var cb = new CQueue(arr);
     var dq = new denque(arr)
     suite.add('shiftpush 2e6 - CQueue', function() {
       var a = cb.shift();
