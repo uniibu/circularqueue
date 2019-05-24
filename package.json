@@ -1,40 +1,38 @@
 {
-	"name": "@unibtc/better-cbuffer",
-	"version": "3.0.6",
-	"description": "Circular Buffer JavaScript implementation",
-	"homepage": "https://github.com/uniibu/better-cbuffer",
-	"main": "./dist/cbuffer.js",
-	"publishConfig": {
-		"access": "public"
-	},
-	"author": {
-		"name": "Uni Sayo",
-		"email": "unibtc@gmail.com",
-		"url": "https://github.com/uniibu"
-	},
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "http://www.opensource.org/licenses/mit-license.php"
-		}
-	],
-	"devDependencies": {
-		"@babel/core": "^7.2.2",
-		"@babel/preset-env": "^7.3.1",
-		"CBuffer": "^2.0.0",
-		"babel-loader": "^8.0.5",
-		"benchmark": "^2.1.4",
-		"rimraf": "^2.6.3",
-		"vows": "latest",
-		"webpack": "^4.29.3",
-		"webpack-cli": "^3.2.3"
-	},
-	"scripts": {
-		"test": "node ./node_modules/.bin/vows",
-		"build": "rm -rf dist && webpack"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/uniibu/better-cbuffer.git"
-	}
+  "name": "circularqueue",
+  "version": "1.0.0",
+  "description": "Circular Buffer JavaScript implementation",
+  "homepage": "https://github.com/uniibu/circularqueue",
+  "main": "./dist/cqueue.js",
+  "author": {
+    "name": "Uni Sayo",
+    "email": "unibtc@gmail.com",
+    "url": "https://github.com/uniibu"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "CBuffer": "^2.0.0",
+    "babel-loader": "^8.0.5",
+    "benchmark": "^2.1.4",
+    "rimraf": "^2.6.3",
+    "vows": "latest",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
+  },
+  "scripts": {
+    "test": "node ./node_modules/.bin/vows",
+    "build": "rm -rf dist && webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uniibu/cqueue.git"
+  },
+  "dependencies": {}
 }

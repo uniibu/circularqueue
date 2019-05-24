@@ -3,5 +3,4 @@ node_modules
 test
 .travis.yml
 webpack.config.js
-yarn.lock
 .cache

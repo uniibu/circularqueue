@@ -1,27 +1,29 @@
 
-module.exports = function(CBuffer,bench) {
-  const suite = new bench.Suite();
-  const SIZE = 1e4;
-  var arr = Array.from(new Array(SIZE),(d,i) => i)
-  var cb = new CBuffer(arr);
-
-  suite.add('shift 1e4 - CBuffer', function() {
-    for (var i = SIZE; i >= 0; i--) {
+module.exports = function(CBuffer, bench, denque) {
+  return new Promise(resolve => {
+    const suite = new bench.Suite();
+    const SIZE = 2e6;
+    console.log('SHIFT')
+    var arr = Array.from(new Array(SIZE), (d, i) => i)
+    var cb = new CBuffer(arr);
+    var dq = new denque(arr)
+    suite.add('shift 2e6 - CQueue', function() {
       cb.shift();
-    }
-  });
-
-  suite.add('shift 1e4 - Array  ', function() {
-    for (var i = SIZE; i >= 0; i--) {
+      cb.shift();
+      cb.shift();
+    }).add('shift 2e6 - Array  ', function() {
       arr.shift();
-    }
-  });
-   suite.on('cycle', function(event) {
-    console.log(String(event.target));
+      arr.shift();
+      arr.shift();
+    }).add('shift 2e6 - Denque  ', function() {
+      dq.shift();
+      dq.shift();
+      dq.shift();
+    }).on('cycle', function(event) {
+      console.log(String(event.target));
+    }).on('complete', function() {
+      console.log('Fastest is ' + this.filter('fastest').map('name'));
+      resolve();
+    }).run({ 'async': true });
   })
-  .on('complete', function() {
-    process.send('Fastest is ' + this.filter('fastest').map('name'));
-    process.exit()
-  })
-  .run({ 'async': true });
 }

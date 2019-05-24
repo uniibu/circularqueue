@@ -1,11 +1,11 @@
 const path = require('path')
 const forBrowser = {
   mode: 'production',
-  entry: './cbuffer.js',
+  entry: './cqueue.js',
   output: {
-    library: 'CBuffer',
+    library: 'CQueue',
     libraryTarget: 'umd',
-    filename: 'cbuffer-browser.js',
+    filename: 'cqueue-browser.js',
     path: path.resolve(__dirname, 'dist'),
     globalObject: `typeof self !== 'undefined' ? self : this`
   },
@@ -29,12 +29,12 @@ const forBrowser = {
 };
 const forNode = {
   mode: 'production',
-  entry: './cbuffer.js',
+  entry: './cqueue.js',
   target: 'node',
   output: {
-    library: 'CBuffer',
+    library: 'CQueue',
     libraryTarget: 'umd',
-    filename: 'cbuffer.js',
+    filename: 'cqueue.js',
     path: path.resolve(__dirname, 'dist'),
     globalObject: `typeof self !== 'undefined' ? self : this`
   },
