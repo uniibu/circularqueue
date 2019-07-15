@@ -23,7 +23,7 @@
     "rimraf": "^2.6.3",
     "vows": "latest",
     "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.3.6"
   },
   "scripts": {
     "test": "node ./node_modules/.bin/vows",
